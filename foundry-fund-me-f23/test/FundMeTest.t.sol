@@ -12,7 +12,11 @@ contract FundMeTest is Test {
         fundme = new FundMe(0x694AA1769357215DE4FAC081bf1f309aDC325306);
     }
 
-    function testDemo() public {
+    function testMinDollarIsFive() public {
         assertEq(fundme.MINIMUM_USD(), 5e18);
+    }
+
+    function testOwnerIsMsgSender() public {
+        assertEq(fundme.getOwner(), address(this));
     }
 }
