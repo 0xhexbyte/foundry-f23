@@ -123,3 +123,5 @@ contract FundMe {
         return s_priceFeed;
     }
 }
+
+//forge create FundMe --constructor-args 0x694AA1769357215DE4FAC081bf1f309aDC325306 --rpc-url http://127.0.0.1:8545 --interactive --legacy
