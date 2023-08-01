@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "forge-std/Script.sol";
+import {Script} from "forge-std/Script.sol";
 import {FundMe} from "../src/FundMe.sol";
 
 contract DeployFundMe is Script {
     function run() public {
         vm.startBroadcast();
-        new FundMe(0x5FbDB2315678afecb367f032d93F642f64180aa3);
+        new FundMe(0x694AA1769357215DE4FAC081bf1f309aDC325306);
         vm.stopBroadcast();
     }
 }
