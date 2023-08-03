@@ -23,7 +23,7 @@ contract FundMeTest is Test {
         assertEq(fundMe.getOwner(), msg.sender);
     }
 
-    function testPVVersion() public {
+    function testVersion() public {
         uint256 version = fundMe.getVersion();
         assertEq(version, 4);
     }

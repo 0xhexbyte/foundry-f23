@@ -9,6 +9,8 @@ contract HelperConfig {
     constructor() {
         if (block.chainid == 11155111) {
             activeNetworkConfig = getSepoliaEthConfig();
+        } else if (block.chainid == 1) {
+            activeNetworkConfig = getMainnetEthConfig();
         } else {
             activeNetworkConfig = getAnvilEthConfig();
         }
@@ -27,6 +29,13 @@ contract HelperConfig {
     }
 
     function getAnvilEthConfig() public pure returns (NetworkConfig memory) {}
+
+    function getMainnetEthConfig() public pure returns (NetworkConfig memory) {
+        NetworkConfig memory ethConfig = NetworkConfig({
+            priceFeed: 0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419
+        });
+        return ethConfig;
+    }
 }
 
 // 1. Deploy mocks when we are on a local chain
