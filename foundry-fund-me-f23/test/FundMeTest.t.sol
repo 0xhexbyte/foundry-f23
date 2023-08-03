@@ -8,6 +8,7 @@ import {DeployFundMe} from "../script/DeployFundMe.s.sol";
 
 contract FundMeTest is Test {
     FundMe fundMe;
+    address testAddr = makeAddr("mrig");
 
     function setUp() external {
         // fundme = new FundMe(0x694AA1769357215DE4FAC081bf1f309aDC325306);
@@ -26,5 +27,17 @@ contract FundMeTest is Test {
     function testVersion() public {
         uint256 version = fundMe.getVersion();
         assertEq(version, 4);
+    }
+
+    function testFundFailsWithoutEth() public {
+        vm.expectRevert();
+        fundMe.fund();
+    }
+
+    function testFundUpdatesFundedDataStructure() public {
+        vm.prank(testAddr);
+        fundMe.fund{value: 2e18}();
+        uint256 amountFunded = fundMe.getAddressToAmountFunded(address(this));
+        assertEq(amountFunded, 2e18);
     }
 }
